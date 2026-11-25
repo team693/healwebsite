@@ -47,14 +47,15 @@ Icons come from [Phosphor](https://phosphoricons.com) (regular weight), stored i
 
 ## Hosting
 
-Any static host works. Recommended: **Cloudflare Pages** (free), connected to this repository.
-
-- Framework preset: None
-- Build command: `python3 tools/build.py`
-- Build output directory: `/`
-
-Every push to `main` then goes live automatically. `404.html` is used for missing pages.
+The site is published with **GitHub Pages** from the `main` branch (Settings → Pages → Deploy from a branch → `main` / root). Every push to `main` goes live within a few minutes. `404.html` is used for missing pages, and `.nojekyll` tells GitHub to publish the files as they are.
 
 ### Pointing the domain
 
-In Namecheap, under Domain List → Manage → Advanced DNS, change only the records for the website (`www` and `@`) to the values the host gives you. **Do not change the MX or TXT records**: they run the team email.
+In Namecheap, under Domain List → Manage → Advanced DNS:
+
+- `www` CNAME record → `team693.github.io`
+- `@` A records → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+
+Then in GitHub, Settings → Pages → Custom domain → `www.healsocialfoundation.com`, and tick Enforce HTTPS once it is offered.
+
+**Do not change the MX or TXT records**: they run the team email.
