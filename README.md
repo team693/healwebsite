@@ -31,16 +31,6 @@ The addresses match the old Google Sites pages, so existing links keep working.
 
    This rewrites the page folders (`about/`, `donate/` and so on) and `index.html` at the top of the repository. Commit both the source and the built files.
 
-### English and Urdu
-
-Text that exists in both languages is written twice, side by side:
-
-```html
-<span data-lang="en">Donate</span><span data-lang="ur">عطیہ کریں</span>
-```
-
-The اردو / English button in the header switches between them and remembers the choice. Text without `data-lang` shows in both languages.
-
 ### Icons
 
 Icons come from [Phosphor](https://phosphoricons.com) (regular weight), stored in `tools/icons/`. Use them in a page as `{{icon:heart}}`. To add one, copy its SVG from `@phosphor-icons/core` into that folder.
