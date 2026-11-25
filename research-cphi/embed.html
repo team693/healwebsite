@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research — Heal Social Foundation</title>
+<meta name="description" content="The Research unit of Heal Social Foundation, a Section 42 non-profit in Karachi, Pakistan — community health research, quantitative determinants analysis, and open data infrastructure through the Community Public Health Initiative.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Nastaliq+Urdu:wght@400&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================
+   PAGE
+   ========================================================== */
+:root{
+  --ink:#14333e; --muted:#4f6a75; --faint:#7f97a1;
+  --bg:#ffffff; --rule:#dde7ea; --accent:#0e7196; --wash:#f2f7f9;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,sans-serif;
+     font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+.page{max-width:760px;margin:0 auto;padding:clamp(2rem,5vw,4rem) clamp(1.15rem,5vw,2rem) 4.5rem}
+
+h1{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(1.85rem,4.4vw,2.5rem);
+   font-weight:600;line-height:1.2;letter-spacing:-.015em}
+h2{font-family:'Source Serif 4',Georgia,serif;font-size:1.3rem;font-weight:600;
+   margin:2.9rem 0 .2rem;padding-top:1.5rem;border-top:1px solid var(--rule)}
+h3{font-size:.95rem;font-weight:600;margin:1.8rem 0 .35rem;color:var(--ink)}
+p{margin:.85rem 0;color:var(--muted)}
+p.lead{font-size:1.06rem;color:var(--ink)}
+strong{color:var(--ink);font-weight:600}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(14,113,150,.3)}
+a:hover{border-bottom-color:var(--accent)}
+.urdu{font-family:'Noto Nastaliq Urdu',serif;direction:rtl;unicode-bidi:isolate}
+ul{margin:.85rem 0 .85rem 1.15rem;color:var(--muted)}
+li{margin:.35rem 0;padding-left:.2rem}
+
+.masthead{border-bottom:2px solid var(--ink);padding-bottom:1.3rem;margin-bottom:.4rem}
+.kicker{font-size:.71rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+        color:var(--faint);margin-bottom:.65rem}
+
+dl{margin:1rem 0}
+dt{font-size:.73rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+   color:var(--faint);margin-top:1.05rem}
+dd{margin:.12rem 0 0;color:var(--muted)}
+
+.note{background:var(--wash);border:1px solid var(--rule);border-radius:8px;
+      padding:1rem 1.15rem;margin:1.35rem 0;font-size:.94rem;color:var(--muted)}
+.note strong{color:var(--ink)}
+
+.page table{width:100%;border-collapse:collapse;margin:1.1rem 0;font-size:.9rem}
+.page th,.page td{text-align:left;padding:.55rem .6rem;border-bottom:1px solid var(--rule);vertical-align:top}
+.page th{font-size:.71rem;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);font-weight:600}
+.page td{color:var(--muted)}
+.page td:first-child{color:var(--ink);font-weight:500;width:36%}
+.page table.schema td:first-child{font-family:'IBM Plex Mono',monospace;font-weight:400;
+  font-size:.84rem;color:var(--ink);width:30%}
+
+footer{margin-top:3.2rem;padding-top:1.3rem;border-top:1px solid var(--rule);
+       font-size:.84rem;color:var(--faint);line-height:1.85}
+
+@media(max-width:560px){
+  body{font-size:15.5px}
+  .page td:first-child{width:40%}
+  .page table.schema td:first-child{width:38%}
+}
+
+/* ==========================================================
+   METHODS DEMONSTRATION — all rules scoped under .demo
+   ========================================================== */
+.demo{
+  --d-ink:#14333e; --d-muted:#5c7884; --d-faint:#8aa4ae;
+  --d-bg:#f4f8f9; --d-card:#fff; --d-line:#dfe9ec;
+  --d-teal:#1b9ec9; --d-teal-deep:#0e7196; --d-teal-soft:#e6f3f8;
+  background:var(--d-bg);border:1px solid var(--d-line);border-radius:14px;
+  padding:16px;margin:1.5rem 0;font-size:13.5px;line-height:1.55;color:var(--d-ink);
+}
+.demo .banner{
+  background:#fff5f5;border:1px solid #f0c4c8;border-left:4px solid #d9535f;
+  border-radius:8px;padding:10px 13px;margin-bottom:14px;
+  font-size:12.5px;color:#8c2f39;line-height:1.5;
+}
+.demo .banner b{color:#7a222c;font-weight:600}
+.demo .d-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:3px}
+.demo .d-title{font-size:16px;font-weight:700;letter-spacing:-.01em;color:var(--d-ink)}
+.demo .d-sub{font-size:12px;color:var(--d-muted)}
+.demo .d-intro{font-size:12.5px;color:var(--d-muted);margin:0 0 14px;max-width:70ch}
+
+.demo .bar{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end;margin-bottom:14px}
+.demo .fg{display:flex;flex-direction:column}
+.demo label{font-size:9.5px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;
+      color:var(--d-faint);margin-bottom:2px}
+.demo select{border:1px solid var(--d-line);background:#fff;border-radius:8px;padding:6px 9px;
+       font-family:'Inter',sans-serif;font-size:12.5px;color:var(--d-ink);min-width:132px}
+.demo select:focus{outline:none;border-color:var(--d-teal);box-shadow:0 0 0 3px rgba(27,158,201,.14)}
+.demo .n-chip{margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:12px;
+        color:var(--d-teal-deep);background:var(--d-teal-soft);border-radius:999px;
+        padding:6px 13px;font-weight:600;align-self:center}
+
+.demo .d-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.demo .d-card{background:var(--d-card);border:1px solid var(--d-line);border-radius:12px;padding:14px 15px}
+.demo .d-card .ct{font-size:13px;font-weight:700;letter-spacing:-.01em;color:var(--d-ink)}
+.demo .d-card .cs{font-size:11px;color:var(--d-muted);margin:2px 0 10px;line-height:1.45}
+.demo .wide{grid-column:1/-1}
+.demo svg{display:block;width:100%;height:auto;overflow:visible}
+.demo .axis{font-size:9.5px;fill:var(--d-faint)}
+
+.demo table.d-schema{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:2px}
+.demo table.d-schema th{text-align:left;font-size:9.5px;letter-spacing:.07em;text-transform:uppercase;
+           color:var(--d-faint);padding:5px 6px;border-bottom:1px solid var(--d-line);font-weight:600}
+.demo table.d-schema td{padding:5px 6px;border-bottom:1px solid var(--d-line);
+           color:var(--d-muted);vertical-align:top;width:auto}
+.demo table.d-schema td:first-child{font-family:'IBM Plex Mono',monospace;color:var(--d-ink);
+           font-size:11px;white-space:nowrap;font-weight:400;width:auto}
+.demo .req{color:#d9535f;font-weight:700}
+.demo .priv{background:var(--d-teal-soft);border-radius:6px;padding:7px 10px;margin-top:9px;
+      font-size:11px;color:var(--d-teal-deep)}
+
+.demo .legend{display:flex;gap:11px;flex-wrap:wrap;font-size:10.5px;color:var(--d-muted);margin-top:8px}
+.demo .legend span{display:inline-flex;align-items:center;gap:4px}
+.demo .legend i{width:9px;height:9px;border-radius:2px;display:inline-block}
+.demo .d-foot{margin-top:13px;font-size:11px;color:var(--d-faint);line-height:1.6}
+@media(max-width:520px){ .demo .d-grid{grid-template-columns:1fr} .demo{padding:11px} }
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="masthead">
+  <p class="kicker">Heal Social Foundation · Karachi, Pakistan</p>
+  <h1>Research</h1>
+</div>
+
+<p class="lead">The Research unit of Heal Social Foundation conducts quantitative community health research on the social, economic and environmental determinants of preventable illness in low-income urban populations in Karachi, and builds open data infrastructure for collecting and analysing community-level health data.</p>
+
+<p>The unit works alongside the Foundation's four operating departments — Health, Education, Awareness and Love for Humanity — with a remit to ground each of them in community-level evidence rather than assumption. Its fieldwork is conducted through the Foundation's <strong>Community Public Health Initiative (CPHI)</strong>.</p>
+
+
+<h2>Institutional identity</h2>
+
+<dl>
+  <dt>Legal entity</dt>
+  <dd>Heal Social Foundation</dd>
+
+  <dt>Legal form</dt>
+  <dd>Not-for-profit company limited by guarantee, licensed under Section 42 of the Companies Act 2017 (Pakistan)</dd>
+
+  <dt>Regulator and registration</dt>
+  <dd>Securities and Exchange Commission of Pakistan — Corporate Universal Identification Number (CUIN) 0265422; Section 42 Licence No. 2057</dd>
+
+  <dt>Tax registration</dt>
+  <dd>Federal Board of Revenue — National Tax Number (NTN) E445846</dd>
+
+  <dt>Registered office</dt>
+  <dd>D-128, King Cottages, Gulistan-e-Johar Block 7, University Road, Karachi, Sindh, Pakistan</dd>
+
+  <dt>Incorporated</dt>
+  <dd>5 August 2024. The organisation traces its origins to a youth-led volunteer initiative begun in 2012, which took organised form in 2017.</dd>
+
+  <dt>Statutory auditor</dt>
+  <dd>Zain Suhail &amp; Co., Chartered Accountants, Karachi</dd>
+
+  <dt>Academic affiliation</dt>
+  <dd>Memorandum of Understanding with Ziauddin University, Karachi</dd>
+
+  <dt>Independent evaluation</dt>
+  <dd>Assessed by the Pakistan Centre for Philanthropy under its NPO Certification programme, scoring 802/1000 on the PCP Performance Evaluation</dd>
+
+  <dt>International listing</dt>
+  <dd>United Nations Partners Portal</dd>
+
+  <dt>Registrations in progress</dt>
+  <dd>Sindh Charity Commission; Sindh Technical Education and Vocational Training Authority (STEVTA)</dd>
+</dl>
+
+
+<h2>Governance</h2>
+
+<p>The Foundation is governed by a Governing Body of three directors, all founding subscribers, with day-to-day management vested in the Chief Executive Officer. It was founded by Syed Muhammad Ahmed.</p>
+
+<table>
+  <tr><th>Member</th><th>Role</th></tr>
+  <tr><td>Simran</td><td>Director and Chief Executive Officer; qualified in dentistry (BDS, 2025)</td></tr>
+  <tr><td>Syed Muhammad Umar</td><td>Director and General Secretary</td></tr>
+  <tr><td>Hamza Ahmed Khan</td><td>Director</td></tr>
+</table>
+
+
+<h2>Research question</h2>
+
+<p>Patients in Karachi's low-income neighbourhoods frequently reach government hospitals at a stage of illness at which treatment is difficult, expensive and less likely to succeed — for conditions that were, earlier in their course, preventable or straightforwardly treatable. The clinical burden is visible at the hospital. The processes that produced it are not.</p>
+
+<p>The unit's programme asks what accounts for that interval. Specifically, it treats <strong>delay between symptom onset and presentation</strong>, and <strong>clinical severity at admission</strong>, as outcome measures, and examines how far they are predicted by household health literacy, care-seeking attitude, socioeconomic position, and environmental exposure — factors that, unlike the disease itself, are addressable through community-level work rather than clinical intervention.</p>
+
+<p>The question is chosen because the Foundation is positioned to answer it. It operates in the neighbourhoods these patients come from and has established relationships in the hospitals they reach, which makes it possible to observe both ends of a pathway that is usually studied only at the hospital end.</p>
+
+<h3>Study area</h3>
+
+<p>The Foundation's operating catchment: Shah Faisal Colony, Korangi and Nath Khan Goth in Karachi, together with the surrounding katchi abadis, and patients treated at the National Institute of Child Health and other government hospitals serving these communities. The design also accounts for in-migration — a substantial share of patients presenting at Karachi's tertiary facilities travel from outside the city, and origin is recorded so that this can be distinguished from local burden.</p>
+
+
+<h2>Research infrastructure</h2>
+
+<p>Because no existing instrument captured the variables this question requires, the unit built one. <strong>Shaoor aur Shifa</strong> (<span class="urdu" lang="ur">شعور اور شفاء</span>) is a self-contained platform for structured intake, storage and analysis of community health case data at participating sites.</p>
+
+<h3>Intake schema</h3>
+
+<p>The instrument records the following per admission. Fields marked required are mandatory at intake; the remainder are recorded where available.</p>
+
+<table class="schema">
+  <tr><th>Field</th><th>Type</th><th>Definition</th></tr>
+  <tr><td>patient_id</td><td>string · required</td><td>Anonymised site code. National identity card numbers are excluded from the schema.</td></tr>
+  <tr><td>age / gender</td><td>int / enum · required</td><td>Age in years; gender recorded as male or female</td></tr>
+  <tr><td>town_uc</td><td>enum · required</td><td>Town or union council of residence</td></tr>
+  <tr><td>hospital</td><td>enum · required</td><td>Admitting facility</td></tr>
+  <tr><td>diagnosis</td><td>enum · required</td><td>Primary confirmed condition, mappable to ICD-10</td></tr>
+  <tr><td>root_causes</td><td>list · required</td><td>Up to three contributory exposures, assessed at intake interview</td></tr>
+  <tr><td>ses_band / income_pkr</td><td>enum / int</td><td>Household income band; monthly income in PKR where disclosed</td></tr>
+  <tr><td>awareness_score</td><td>0–100</td><td>Ten-question structured health-literacy screen</td></tr>
+  <tr><td>attitude</td><td>enum</td><td>Proactive · neutral · avoidant · fatalistic</td></tr>
+  <tr><td>delay_days</td><td>int</td><td>Symptom onset to hospital presentation</td></tr>
+  <tr><td>severity / outcome</td><td>1–5 / enum</td><td>Triage severity; recovered, under treatment, referred, critical</td></tr>
+  <tr><td>water_source / vaccinated / tobacco</td><td>enum / bool</td><td>Correlates for waterborne, vaccine-preventable and non-communicable analysis</td></tr>
+  <tr><td>admit_date</td><td>ISO date</td><td>Supports seasonality analysis</td></tr>
+</table>
+
+<h3>Analytical functions</h3>
+
+<p>The platform implements the following over any filtered cohort:</p>
+
+<ul>
+  <li>Cohort filtering and cross-tabulation across eight dimensions — condition, town, facility, gender, age band, socioeconomic band, contributory exposure and attitude — with every view recomputing against the current subset</li>
+  <li>Bivariate analysis of health-literacy score against delay-to-presentation and against severity at admission</li>
+  <li>Age–sex pyramid and distribution analysis</li>
+  <li>Disease-burden decomposition by category and by preventability classification</li>
+  <li>Flow decomposition of contributory exposures through to outcome</li>
+  <li>Geographic aggregation and choropleth mapping by town, with median health literacy set against median household income to identify neighbourhoods where the two diverge</li>
+  <li>Facility catchment analysis, including the share of critical arrivals by hospital</li>
+  <li>Patient-origin flow analysis of in-migration to Karachi for tertiary care</li>
+  <li>Structured export of any filtered cohort, and a CSV intake template for participating sites</li>
+</ul>
+
+<h3>Architecture and data handling</h3>
+
+<p>The platform is a single self-contained HTML and JavaScript application. It has no server component, no database dependency and no external libraries, which means a participating site can run it offline on an ordinary machine, and the entire codebase can be read and audited by a small team. Data is held locally at the site and exchanged by structured CSV rather than through a central service.</p>
+
+<p>Identity is excluded at the schema level rather than removed later: records carry an anonymised site code, and there is no field in which a national identity card number, name or address could be entered. Nothing at individual level is published.</p>
+
+
+<h3>Methods demonstration</h3>
+
+<p>The panel below runs the instrument's core analyses live. It operates on generated demonstration data, not on patient records, and is included to show the methods and the intake schema rather than any result.</p>
+
+<!-- ================= METHODS DEMONSTRATION ================= -->
+<div class="demo">
+
+  <div class="banner">
+    <b>Synthetic demonstration data.</b> Every record below is generated in your browser by a
+    deterministic pseudo-random function. No real patient data is present and no figure here is an
+    empirical finding — the relationships displayed are properties of the generator, not observations.
+    This panel demonstrates the instrument and its analytical methods only.
+  </div>
+
+  <div class="d-head">
+    <span class="d-title">Shaoor aur Shifa</span>
+    <span class="d-sub">Heal Social Foundation · methods demonstration</span>
+  </div>
+  <p class="d-intro">
+    The platform is designed to test whether health literacy and care-seeking attitude predict
+    delay-to-presentation and clinical severity at admission among patients reaching Karachi
+    government hospitals. Use the filters to see the cohort subset each analysis responds to.
+  </p>
+
+  <div class="bar">
+    <div class="fg"><label for="f-cat">Disease category</label>
+      <select id="f-cat"><option value="">All categories</option></select></div>
+    <div class="fg"><label for="f-ses">Socioeconomic band</label>
+      <select id="f-ses"><option value="">All bands</option></select></div>
+    <div class="fg"><label for="f-att">Care-seeking attitude</label>
+      <select id="f-att"><option value="">All attitudes</option></select></div>
+    <div class="n-chip" id="n-chip">520 records</div>
+  </div>
+
+  <div class="d-grid">
+
+    <div class="d-card wide">
+      <div class="ct">Health literacy against delay-to-presentation</div>
+      <p class="cs">Each point is one admission. Horizontal: awareness score (0–100) from a ten-question
+         structured health-literacy screen. Vertical: days from symptom onset to hospital presentation.
+         Point colour marks triage severity at admission.</p>
+      <svg id="ch-scatter" viewBox="0 0 720 300"></svg>
+      <div class="legend">
+        <span><i style="background:#3cb794"></i>Severity 1–2</span>
+        <span><i style="background:#dd9f3a"></i>Severity 3</span>
+        <span><i style="background:#d9535f"></i>Severity 4–5</span>
+      </div>
+    </div>
+
+    <div class="d-card">
+      <div class="ct">Severity at admission</div>
+      <p class="cs">Distribution of triage severity across the selected cohort.</p>
+      <svg id="ch-sev" viewBox="0 0 360 210"></svg>
+    </div>
+
+    <div class="d-card">
+      <div class="ct">Contributory exposures</div>
+      <p class="cs">Up to three exposures recorded per patient at intake, ranked by frequency.</p>
+      <svg id="ch-cause" viewBox="0 0 360 210"></svg>
+    </div>
+
+    <div class="d-card wide">
+      <div class="ct">Intake schema</div>
+      <p class="cs">Fields captured per admission at each participating site.
+         <span class="req">*</span> = required at intake.</p>
+      <table class="d-schema">
+        <tr><th>Field</th><th>Type</th><th>Definition</th></tr>
+        <tr><td>patient_id <span class="req">*</span></td><td>string</td><td>Anonymised site code (e.g. CHK-0341). National identity numbers are never recorded.</td></tr>
+        <tr><td>age / gender <span class="req">*</span></td><td>int / enum</td><td>Age in years; gender recorded as male or female</td></tr>
+        <tr><td>town_uc <span class="req">*</span></td><td>enum</td><td>Town or union council of residence</td></tr>
+        <tr><td>hospital <span class="req">*</span></td><td>enum</td><td>Admitting facility</td></tr>
+        <tr><td>diagnosis <span class="req">*</span></td><td>enum</td><td>Primary confirmed condition, mappable to ICD-10</td></tr>
+        <tr><td>root_causes <span class="req">*</span></td><td>list</td><td>Up to three contributory exposures, assessed at intake interview</td></tr>
+        <tr><td>ses_band / income_pkr</td><td>enum / int</td><td>Household income band; monthly income in PKR where disclosed</td></tr>
+        <tr><td>awareness_score</td><td>0–100</td><td>Ten-question structured health-literacy screen</td></tr>
+        <tr><td>attitude</td><td>enum</td><td>Proactive · neutral · avoidant · fatalistic</td></tr>
+        <tr><td>delay_days</td><td>int</td><td>Symptom onset to hospital presentation</td></tr>
+        <tr><td>severity / outcome</td><td>1–5 / enum</td><td>Triage severity; recovered, under treatment, referred, critical</td></tr>
+        <tr><td>water_source / vaccinated / tobacco</td><td>enum / bool</td><td>Correlates for waterborne, vaccine-preventable and non-communicable analysis</td></tr>
+        <tr><td>admit_date</td><td>ISO date</td><td>Supports seasonality analysis</td></tr>
+      </table>
+      <div class="priv">Patient identity is not collected. Records carry an anonymised site code only;
+        national identity card numbers are excluded from the schema by design.</div>
+    </div>
+
+  </div>
+
+  <p class="d-foot">
+    Shaoor aur Shifa is a single-file application with no server component and no external
+    dependencies, so that it can be audited by a small team and run offline in the field.
+    Source code available on request.
+  </p>
+
+</div>
+<!-- =============== END METHODS DEMONSTRATION =============== -->
+
+<div class="note">
+<strong>Data status.</strong> Shaoor aur Shifa currently operates on a synthetic demonstration dataset of 520 generated records, produced by a deterministic pseudo-random generator embedded in the application. This dataset exists for interface development, analyst training and method testing only. It contains no real patient records and no data from any identifiable individual, and no result derived from it constitutes an empirical finding — the associations it displays are properties of the generator rather than observations. The platform is instrumentation built ahead of collection.
+</div>
+
+
+<h2>Field data collection</h2>
+
+<p>The unit has conducted one exercise in primary data collection: the <strong>CPHI Community Discovery Survey</strong>, a community survey administered on paper in the field and subsequently transcribed into a structured dataset of 58 variables across 33 completed forms.</p>
+
+<p>The survey was designed to characterise the communities the Foundation works in ahead of any clinical data collection — establishing what households report about health access, cost, and care-seeking before the hospital-side instrument is deployed. The dataset is held in aggregate and is not published at individual level.</p>
+
+
+<h2>Ethics and data governance</h2>
+
+<p>Collection of identifiable patient case data has not commenced. Ethical review will be sought before any such collection begins.</p>
+
+<p>Beneficiary data currently held by the Foundation is maintained under written consent obtained from beneficiaries or their guardians, in registers retained for regulatory inspection. The research instrument is designed so that identity is not collected in the first place rather than stripped afterwards, and no individual-level data from any source is published.</p>
+
+
+<h2>Outputs</h2>
+
+<table>
+  <tr><th>Output</th><th>Description</th></tr>
+  <tr>
+    <td>Shaoor aur Shifa — Heal Health Research Platform</td>
+    <td>Single-file analytical application for community health case data: structured intake against a defined schema, eight-dimensional cohort filtering, bivariate and distribution analysis, exposure decomposition, geographic and facility-catchment mapping, and structured export. Currently running on synthetic demonstration data.</td>
+  </tr>
+  <tr>
+    <td>CPHI Community Discovery Survey dataset</td>
+    <td>Structured 58-variable dataset transcribed from 33 field-administered survey forms. Held in aggregate; not published at individual level.</td>
+  </tr>
+</table>
+
+
+<h2>Contact</h2>
+
+<dl>
+  <dt>Research and general enquiries</dt>
+  <dd><a href="mailto:team@healsocialfoundation.com">team@healsocialfoundation.com</a></dd>
+
+  <dt>Telephone</dt>
+  <dd>+92 335 0338177</dd>
+
+  <dt>Address</dt>
+  <dd>Heal Social Foundation, D-128, King Cottages, Gulistan-e-Johar Block 7, University Road, Karachi, Sindh, Pakistan</dd>
+</dl>
+
+
+<footer>
+  Heal Social Foundation — Section 42 non-profit · CUIN 0265422 · Licence No. 2057 · NTN E445846<br>
+  Registered office: D-128, King Cottages, Gulistan-e-Johar Block 7, University Road, Karachi, Sindh, Pakistan<br>
+  Incorporated 5 August 2024
+</footer>
+
+<!--
+================================================================
+  TO ADD WHEN OBTAINED — omitted, not hidden.
+  1.  PRINCIPAL INVESTIGATOR — name, minuted title, degrees, ORCID,
+      individual mailbox on healsocialfoundation.com. Required by
+      Anthropic's scientist plan; the application cannot succeed
+      without it.
+  2.  RESEARCH TEAM — names, roles, qualifications.
+  3.  ZIAUDDIN MOU — scope, date, status; whether it covers research,
+      ethical review or supervision.
+  4.  ETHICS APPROVAL — reviewing body, reference, date. Confirm the
+      "review will be sought" sentence reflects actual intent.
+  5.  PCP CERTIFICATION — outcome, date, validity, if awarded.
+  6.  CPHI SURVEY — fieldwork dates, sampling, instrument domains,
+      consent procedure, analysis status. Confirm the descriptive
+      paragraph before publishing.
+  7.  DIRECTORS' FULL NAMES as per SECP register.
+  8.  FOUNDER'S CURRENT ROLE relative to the Governing Body.
+  9.  PUBLICATIONS, REPORTS, PRESENTATIONS, FUNDING.
+  10. REPOSITORY URL and licence for Shaoor aur Shifa.
+
+  DO NOT CHANGE WITHOUT EVIDENCE: the Data status note and the
+  demonstration banner both stay, and no sample size, finding or
+  metric may be drawn from the demonstration data.
+================================================================
+-->
+
+</div>
+
+<script>
+/* ============================================================
+   Methods demonstration — generated cohort, not observed.
+   Self-contained so the panel works offline.
+   ============================================================ */
+(function(){
+  var _s=1234567;
+  function rnd(){_s=(_s*1103515245+12345)&0x7fffffff;return _s/0x7fffffff;}
+  function pick(a){return a[Math.floor(rnd()*a.length)];}
+  function gauss(m,sd){var u=rnd(),v=rnd();return m+sd*Math.sqrt(-2*Math.log(u+1e-9))*Math.cos(6.283*v);}
+  function clamp(x,a,b){return Math.max(a,Math.min(b,x));}
+
+  var CATS=['Respiratory / Infectious','Maternal & Neonatal','Non-communicable','Waterborne','Nutritional'];
+  var SES=['Very low','Low','Lower-middle','Middle'];
+  var ATT=['Proactive','Neutral','Avoidant','Fatalistic'];
+  var CAUSES=['Low health literacy','Delayed care-seeking','Unsafe drinking water','Indoor air pollution',
+              'Cost of transport','Incomplete immunisation','Poor sanitation','Tobacco exposure',
+              'Inadequate nutrition','Distance to facility'];
+
+  function makeRecord(){
+    var cat=pick(CATS), sesIdx=Math.floor(rnd()*SES.length);
+    var aw=Math.round(clamp(gauss(38+sesIdx*10,15),2,98));
+    var att = aw>70 ? pick(['Proactive','Proactive','Neutral'])
+            : aw>45 ? pick(['Neutral','Proactive','Avoidant'])
+                    : pick(['Avoidant','Fatalistic','Neutral']);
+    var delay=Math.round(clamp(gauss(12-aw/8+(att==='Fatalistic'?6:att==='Avoidant'?3:0),5),0,45));
+    var sev=Math.round(clamp(1+delay/12+(5-aw/25)+gauss(0,.7),1,5));
+    var pool=CAUSES.slice(), causes=[], nC=1+Math.floor(rnd()*3);
+    for(var k=0;k<nC&&pool.length;k++) causes.push(pool.splice(Math.floor(rnd()*pool.length),1)[0]);
+    if(delay>10&&causes.indexOf('Delayed care-seeking')<0) causes.push('Delayed care-seeking');
+    if(aw<35&&causes.indexOf('Low health literacy')<0) causes.push('Low health literacy');
+    return {cat:cat,ses:SES[sesIdx],awareness:aw,attitude:att,delay:delay,severity:sev,causes:causes};
+  }
+  var DATA=[],i; for(i=0;i<520;i++) DATA.push(makeRecord());
+  var VIEW=DATA, F={cat:'',ses:'',att:''};
+
+  var NS='http://www.w3.org/2000/svg';
+  function $(s){return document.querySelector(s);}
+  function svg(sel){var e=$(sel); while(e.firstChild) e.removeChild(e.firstChild); return e;}
+  function mk(p,tag,attrs,txt){var e=document.createElementNS(NS,tag);
+    for(var k in attrs) e.setAttribute(k,attrs[k]);
+    if(txt!=null) e.textContent=txt; p.appendChild(e); return e;}
+  function sevColor(s){return s>=4?'#d9535f':s===3?'#dd9f3a':'#3cb794';}
+
+  function fillSel(sel,arr){var el=$(sel); arr.forEach(function(o){
+    var op=document.createElement('option'); op.textContent=o; el.appendChild(op);});}
+  fillSel('#f-cat',CATS); fillSel('#f-ses',SES); fillSel('#f-att',ATT);
+
+  function applyFilter(){
+    return DATA.filter(function(r){
+      return (!F.cat||r.cat===F.cat)&&(!F.ses||r.ses===F.ses)&&(!F.att||r.attitude===F.att);});
+  }
+
+  function drawScatter(){
+    var s=svg('#ch-scatter'), W=720,H=300, pad={l:48,r:14,t:12,b:36}, g;
+    var maxD=Math.max(10,Math.max.apply(null,VIEW.map(function(r){return r.delay;})));
+    var px=function(a){return pad.l+a/100*(W-pad.l-pad.r);};
+    var py=function(d){return H-pad.b-d/maxD*(H-pad.t-pad.b);};
+    for(g=0;g<=4;g++){
+      var yv=maxD*g/4, y=py(yv);
+      mk(s,'line',{x1:pad.l,y1:y,x2:W-pad.r,y2:y,stroke:'#dfe9ec','stroke-width':1});
+      mk(s,'text',{x:pad.l-8,y:y+3.5,'text-anchor':'end','class':'axis'},Math.round(yv)+'d');
+    }
+    for(g=0;g<=5;g++) mk(s,'text',{x:px(g*20),y:H-pad.b+16,'text-anchor':'middle','class':'axis'},g*20);
+    mk(s,'text',{x:pad.l+(W-pad.l-pad.r)/2,y:H-4,'text-anchor':'middle','class':'axis'},
+       'Health-literacy score (0\u2013100)');
+    mk(s,'text',{x:13,y:H/2,'text-anchor':'middle','class':'axis',
+       transform:'rotate(-90 13 '+(H/2)+')'},'Delay to presentation (days)');
+    VIEW.forEach(function(r){
+      mk(s,'circle',{cx:px(r.awareness),cy:py(r.delay),r:3.1,
+        fill:sevColor(r.severity),'fill-opacity':.62});
+    });
+  }
+
+  function drawSeverity(){
+    var s=svg('#ch-sev'), W=360,H=210, pad={l:30,r:12,t:14,b:32};
+    var counts=[0,0,0,0,0];
+    VIEW.forEach(function(r){counts[r.severity-1]++;});
+    var max=Math.max.apply(null,counts)||1, bw=(W-pad.l-pad.r)/5;
+    counts.forEach(function(c,idx){
+      var h=c/max*(H-pad.t-pad.b), x=pad.l+idx*bw, y=H-pad.b-h;
+      mk(s,'rect',{x:x+7,y:y,width:bw-14,height:h,rx:5,fill:sevColor(idx+1),'fill-opacity':.85});
+      mk(s,'text',{x:x+bw/2,y:y-5,'text-anchor':'middle','class':'axis'},c);
+      mk(s,'text',{x:x+bw/2,y:H-pad.b+15,'text-anchor':'middle','class':'axis'},idx+1);
+    });
+    mk(s,'text',{x:W/2,y:H-3,'text-anchor':'middle','class':'axis'},'Triage severity');
+  }
+
+  function drawCauses(){
+    var s=svg('#ch-cause'), W=360, pad={l:150,r:44,t:6}, agg={};
+    VIEW.forEach(function(r){r.causes.forEach(function(c){agg[c]=(agg[c]||0)+1;});});
+    var rows=Object.keys(agg).map(function(k){return [k,agg[k]];})
+               .sort(function(a,b){return b[1]-a[1];}).slice(0,7);
+    var H=pad.t+rows.length*27+8; s.setAttribute('viewBox','0 0 '+W+' '+H);
+    var max=Math.max.apply(null,rows.map(function(r){return r[1];}))||1;
+    var bw=W-pad.l-pad.r, tot=VIEW.length||1;
+    rows.forEach(function(r,idx){
+      var y=pad.t+idx*27, w=r[1]/max*bw;
+      var lab=r[0].length>22?r[0].slice(0,21)+'\u2026':r[0];
+      mk(s,'text',{x:pad.l-8,y:y+15,'text-anchor':'end','class':'axis','font-size':10.5},lab);
+      mk(s,'rect',{x:pad.l,y:y+4,width:w,height:17,rx:5,fill:'#1b9ec9','fill-opacity':.8});
+      mk(s,'text',{x:pad.l+w+7,y:y+16,'class':'axis','font-size':10},Math.round(r[1]/tot*100)+'%');
+    });
+  }
+
+  function refresh(){
+    VIEW=applyFilter();
+    $('#n-chip').textContent=VIEW.length+' records';
+    drawScatter(); drawSeverity(); drawCauses();
+  }
+  ['cat','ses','att'].forEach(function(k){
+    $('#f-'+k).addEventListener('change',function(){F[k]=this.value;refresh();});
+  });
+  refresh();
+  window.addEventListener('resize',function(){
+    clearTimeout(window._rz); window._rz=setTimeout(refresh,180);});
+})();
+</script>
+</body>
+</html>
