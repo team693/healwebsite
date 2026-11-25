@@ -94,7 +94,7 @@ def nav_html(slug):
         mobile += f'<a href="{{{{url:{s}}}}}"{cur}>{en}</a>'
     return f'''<a class="skip" href="#main">Skip to content</a>
 <div class="nav-shell"><nav class="nav" aria-label="Main">
-  <a class="brand" href="{{{{url:index}}}}" aria-label="Heal Social Foundation, home">{LOGO}<span>Heal</span></a>
+  <a class="brand" href="{{{{url:index}}}}"><img src="{{{{root}}}}assets/img/heal-logo.png" alt="Heal Social Foundation, home" width="85" height="32"></a>
   <ul class="nav-links">{''.join(items)}</ul>
   <div class="nav-tools">
     <a class="btn btn-primary btn-sm btn-donate" href="{{{{url:donate}}}}">{{{{icon:heart}}}}<span>Donate</span></a>
@@ -107,7 +107,7 @@ def nav_html(slug):
 FOOTER = '''<footer><div class="wrap">
   <div class="foot">
     <div>
-      <a class="brand" href="{{url:index}}" style="margin-bottom:12px">''' + LOGO + '''<span>Heal Social Foundation</span></a>
+      <a class="brand" href="{{url:index}}" style="margin-bottom:12px"><img src="{{root}}assets/img/heal-logo.png" alt="Heal Social Foundation" width="107" height="40"></a>
       <p class="body-6 muted" style="max-width:340px">Health, Education, Awareness and Love for Humanity. A Section 42 nonprofit in Karachi, Pakistan.</p>
       <div class="social">
         <a href="https://www.facebook.com/HealAidFoundation" aria-label="Facebook" rel="noopener" target="_blank">{{icon:facebook-logo}}</a>
@@ -150,7 +150,7 @@ def page(slug, preview):
 <meta property="og:url" content="{canonical}"><meta property="og:image" content="{SITE}/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#ffffff">
-<link rel="icon" href="{{{{root}}}}assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="{{{{root}}}}assets/favicon.png" type="image/png"><link rel="apple-touch-icon" href="{{{{root}}}}assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="{{{{root}}}}assets/site.css">'''
