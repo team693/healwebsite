@@ -26,8 +26,8 @@ SITE = 'https://www.healsocialfoundation.com'
 
 # slug -> output folder ('' is the home page). Slugs match the old Google Sites URLs so existing links keep working.
 PAGES = ['index', 'about', 'our-work', 'research-cphi', 'joinpartner', 'internship', 'eleven-labs', 'contact-us', 'donate', 'privacy', '404']
-NAV = [('index', 'Home', 'ہوم'), ('about', 'About', 'ہمارے بارے میں'), ('our-work', 'Our work', 'ہمارا کام'),
-       ('research-cphi', 'Research', 'تحقیق'), ('joinpartner', 'Get involved', 'شامل ہوں'), ('contact-us', 'Contact', 'رابطہ')]
+NAV = [('index', 'Home'), ('about', 'About'), ('our-work', 'Our work'),
+       ('research-cphi', 'Research'), ('joinpartner', 'Get involved'), ('contact-us', 'Contact')]
 
 LOGO = ('<svg viewBox="0 0 200 200" aria-hidden="true"><path d="M100,185 C45,180 8,140 10,92 C68,88 106,126 100,185Z" fill="#d9535f" opacity=".9"/>'
         '<path d="M100,185 C42,152 32,78 60,24 C118,52 136,122 100,185Z" fill="#3cb794" opacity=".8"/>'
@@ -77,60 +77,62 @@ def fill(html, slug, preview):
         root = ''
     html = re.sub(r'\{\{icon:([\w-]+)\}\}', lambda m: icon(m.group(1)), html)
     html = re.sub(r'\{\{url:([\w-]+)\}\}', lambda m: make_url(slug, m.group(1), preview) if not (slug == '404' and not preview) else ('/' if m.group(1) == 'index' else '/' + m.group(1) + '/'), html)
+    art = ('<div class="art" aria-hidden="true"><svg viewBox="0 0 200 200"><path d="M100,185 C45,180 8,140 10,92 C68,88 106,126 100,185Z" fill="#fbeaeb"/>'
+           '<path d="M100,185 C42,152 32,78 60,24 C118,52 136,122 100,185Z" fill="#e3f4ee"/><path d="M100,185 C162,152 178,72 146,20 C88,46 68,122 100,185Z" fill="#e3f2f8"/></svg></div>')
+    html = html.replace('<section class="page-hero"><div class="wrap">', '<section class="page-hero">' + art + '<div class="wrap">')
     return html.replace('{{root}}', root)
 
 
 def nav_html(slug):
     items = []
-    for s, en, ur in NAV:
+    for s, en in NAV:
         cur = ' aria-current="page"' if s == slug else ''
-        items.append(f'<li><a href="{{{{url:{s}}}}}"{cur}><span data-lang="en">{en}</span><span data-lang="ur">{ur}</span></a></li>')
+        items.append(f'<li><a href="{{{{url:{s}}}}}"{cur}>{en}</a></li>')
     mobile = ''
-    for s, en, ur in NAV + [('internship', 'Internship', 'انٹرن شپ')]:
+    for s, en in NAV + [('internship', 'Internship')]:
         cur = ' aria-current="page"' if s == slug else ''
-        mobile += f'<a href="{{{{url:{s}}}}}"{cur}><span data-lang="en">{en}</span><span data-lang="ur">{ur}</span></a>'
+        mobile += f'<a href="{{{{url:{s}}}}}"{cur}>{en}</a>'
     return f'''<a class="skip" href="#main">Skip to content</a>
 <div class="nav-shell"><nav class="nav" aria-label="Main">
   <a class="brand" href="{{{{url:index}}}}" aria-label="Heal Social Foundation, home">{LOGO}<span>Heal</span></a>
   <ul class="nav-links">{''.join(items)}</ul>
   <div class="nav-tools">
-    <button class="lang-btn" type="button" data-lang-toggle><span data-lang="en" class="ur">اردو</span><span data-lang="ur">English</span></button>
-    <a class="btn btn-primary btn-sm btn-donate" href="{{{{url:donate}}}}">{{{{icon:heart}}}}<span><span data-lang="en">Donate</span><span data-lang="ur">عطیہ کریں</span></span></a>
+    <a class="btn btn-primary btn-sm btn-donate" href="{{{{url:donate}}}}">{{{{icon:heart}}}}<span>Donate</span></a>
     <button class="menu-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu"><i></i><i></i><i></i></button>
   </div>
 </nav></div>
-<div class="mobile-panel" id="mobile-menu">{mobile}<a class="btn btn-primary" href="{{{{url:donate}}}}"><span data-lang="en">Donate</span><span data-lang="ur">عطیہ کریں</span></a></div>'''
+<div class="mobile-panel" id="mobile-menu">{mobile}<a class="btn btn-primary" href="{{{{url:donate}}}}">Donate</a></div>'''
 
 
 FOOTER = '''<footer><div class="wrap">
   <div class="foot">
     <div>
       <a class="brand" href="{{url:index}}" style="margin-bottom:12px">''' + LOGO + '''<span>Heal Social Foundation</span></a>
-      <p class="body-6 muted" style="max-width:340px"><span data-lang="en">Health, Education, Awareness and Love for Humanity. A Section 42 nonprofit in Karachi, Pakistan.</span><span data-lang="ur">صحت، تعلیم، آگاہی اور انسانیت سے محبت۔ کراچی، پاکستان میں سیکشن ۴۲ کے تحت رجسٹرڈ غیر منافع بخش ادارہ۔</span></p>
+      <p class="body-6 muted" style="max-width:340px">Health, Education, Awareness and Love for Humanity. A Section 42 nonprofit in Karachi, Pakistan.</p>
       <div class="social">
         <a href="https://www.facebook.com/HealAidFoundation" aria-label="Facebook" rel="noopener" target="_blank">{{icon:facebook-logo}}</a>
         <a href="https://www.instagram.com/healaidfoundation/" aria-label="Instagram" rel="noopener" target="_blank">{{icon:instagram-logo}}</a>
         <a href="https://www.linkedin.com/company/healsocialfoundation" aria-label="LinkedIn" rel="noopener" target="_blank">{{icon:linkedin-logo}}</a>
       </div>
     </div>
-    <div><h2><span data-lang="en">Organisation</span><span data-lang="ur">ادارہ</span></h2><ul>
-      <li><a href="{{url:about}}"><span data-lang="en">About us</span><span data-lang="ur">ہمارے بارے میں</span></a></li>
-      <li><a href="{{url:our-work}}"><span data-lang="en">Our work</span><span data-lang="ur">ہمارا کام</span></a></li>
-      <li><a href="{{url:research-cphi}}"><span data-lang="en">Research &amp; CPHI</span><span data-lang="ur">تحقیق</span></a></li>
-      <li><a href="{{url:eleven-labs}}"><span data-lang="en">ElevenLabs programme</span><span data-lang="ur">الیون لیبز پروگرام</span></a></li>
+    <div><h2>Organisation</h2><ul>
+      <li><a href="{{url:about}}">About us</a></li>
+      <li><a href="{{url:our-work}}">Our work</a></li>
+      <li><a href="{{url:research-cphi}}">Research &amp; CPHI</a></li>
+      <li><a href="{{url:eleven-labs}}">ElevenLabs programme</a></li>
     </ul></div>
-    <div><h2><span data-lang="en">Get involved</span><span data-lang="ur">شامل ہوں</span></h2><ul>
-      <li><a href="{{url:donate}}"><span data-lang="en">Donate</span><span data-lang="ur">عطیہ کریں</span></a></li>
-      <li><a href="{{url:joinpartner}}"><span data-lang="en">Join or partner</span><span data-lang="ur">شامل ہوں یا شراکت</span></a></li>
-      <li><a href="{{url:internship}}"><span data-lang="en">Internship</span><span data-lang="ur">انٹرن شپ</span></a></li>
+    <div><h2>Get involved</h2><ul>
+      <li><a href="{{url:donate}}">Donate</a></li>
+      <li><a href="{{url:joinpartner}}">Join or partner</a></li>
+      <li><a href="{{url:internship}}">Internship</a></li>
     </ul></div>
-    <div><h2><span data-lang="en">Contact</span><span data-lang="ur">رابطہ</span></h2><ul>
+    <div><h2>Contact</h2><ul>
       <li><a href="mailto:team@healsocialfoundation.com">team@healsocialfoundation.com</a></li>
       <li><a href="tel:+923350338177" dir="ltr">+92 335 0338177</a></li>
-      <li><a href="{{url:contact-us}}"><span data-lang="en">All contact details</span><span data-lang="ur">مکمل رابطہ</span></a></li>
+      <li><a href="{{url:contact-us}}">All contact details</a></li>
     </ul></div>
   </div>
-  <div class="legal"><span>© <span data-year>2026</span> Heal Social Foundation · SECP CUIN 0265422 · NTN E445846</span><a href="{{url:privacy}}" class="foot-a" style="color:inherit"><span data-lang="en">Privacy</span><span data-lang="ur">رازداری</span></a></div>
+  <div class="legal"><span>© <span data-year>2026</span> Heal Social Foundation · SECP CUIN 0265422 · NTN E445846</span><a href="{{url:privacy}}" class="foot-a" style="color:inherit">Privacy</a></div>
 </div></footer>
 <div class="toast" role="status" aria-live="polite"></div>'''
 
@@ -150,7 +152,7 @@ def page(slug, preview):
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="{{{{root}}}}assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Noto+Nastaliq+Urdu:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="{{{{root}}}}assets/site.css">'''
     if slug == '404':
         head += '\n<meta name="robots" content="noindex">'

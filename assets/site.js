@@ -3,20 +3,6 @@
   root.classList.remove('no-js');
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* language */
-  function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
-  function setLang(l) {
-    root.lang = l; root.dir = l === 'ur' ? 'rtl' : 'ltr';
-    document.querySelectorAll('[data-lang-toggle]').forEach(function (b) {
-      b.setAttribute('aria-label', l === 'ur' ? 'Switch to English' : 'اردو میں دیکھیں');
-    });
-    store('heal-lang', l);
-  }
-  setLang(store('heal-lang') === 'ur' ? 'ur' : 'en');
-  document.addEventListener('click', function (e) {
-    if (e.target.closest('[data-lang-toggle]')) { setLang(root.lang === 'ur' ? 'en' : 'ur'); initTagline(); }
-  });
-
   /* mobile menu */
   var btn = document.querySelector('.menu-btn');
   var panel = document.querySelector('.mobile-panel');
@@ -47,7 +33,7 @@
     document.querySelectorAll('.tagline [data-words]').forEach(function (p) {
       if (!p.dataset.split) {
         p.innerHTML = p.textContent.trim().split(/\s+/).map(function (w) {
-          var accent = /drops|قطروں/.test(w) ? ' accent' : '';
+          var accent = /drops/.test(w) ? ' accent' : '';
           return '<span class="w' + accent + '">' + w + '</span>';
         }).join(' ');
         p.dataset.split = '1';
@@ -66,6 +52,15 @@
   window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
   initTagline();
 
+  /* in-page section nav highlights the section in view */
+  var chips = document.querySelectorAll('.chipnav a');
+  if (chips.length && 'IntersectionObserver' in window) {
+    var so = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) chips.forEach(function (c) { c.classList.toggle('on', c.getAttribute('href') === '#' + en.target.id); }); });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    chips.forEach(function (c) { var t = document.querySelector(c.getAttribute('href')); if (t) so.observe(t); });
+  }
+
   /* copy buttons */
   var toast = document.querySelector('.toast');
   function say(msg) { if (!toast) return; toast.textContent = msg; toast.classList.add('on'); clearTimeout(say.t); say.t = setTimeout(function () { toast.classList.remove('on'); }, 2200); }
@@ -76,14 +71,14 @@
     var label = b.querySelector('[data-label]');
     function ok() {
       b.classList.add('done');
-      if (label) { label.dataset.orig = label.dataset.orig || label.textContent; label.textContent = root.lang === 'ur' ? 'کاپی ہو گیا' : 'Copied'; }
-      say((root.lang === 'ur' ? 'کاپی ہو گیا: ' : 'Copied: ') + text);
+      if (label) { label.dataset.orig = label.dataset.orig || label.textContent; label.textContent = 'Copied'; }
+      say('Copied: ' + text);
       setTimeout(function () { b.classList.remove('done'); if (label) label.textContent = label.dataset.orig; }, 1800);
     }
     function fallback() {
       var r = document.createRange(); var v = b.closest('.bank-row').querySelector('.v');
       r.selectNodeContents(v); var s = getSelection(); s.removeAllRanges(); s.addRange(r);
-      say(root.lang === 'ur' ? 'متن منتخب ہو گیا، اب کاپی کریں' : 'Selected. Press Ctrl+C to copy.');
+      say('Selected. Press Ctrl+C to copy.');
     }
     try { navigator.clipboard.writeText(text).then(ok, fallback); } catch (err) { fallback(); }
   });
